@@ -2,8 +2,9 @@
 
 int first = 0;
 int second = 0;
-char aritmetic[] = "a";
-char type[] = "Multiplication";
+char aritmetic[] = "aa";
+
+char type[] = "nonMultiplication";
 
 void aritmeticSet();
 %}
@@ -17,7 +18,13 @@ void aritmeticSet();
 "-"   { printf("Minus!! %s\n",yytext);aritmeticSet(yytext,"Substract"); }
 "*"   { printf("Multiplication!! %s\n",yytext);aritmeticSet(yytext,"Multiplication"); }
 "/"   { printf("Division!! %s\n",yytext);aritmeticSet(yytext,"Division"); }
-
+"<"   { printf("greater!! %s\n",yytext);aritmeticSet(yytext,"greater"); }
+">"   { printf("less!! %s\n",yytext);aritmeticSet(yytext,"Substract"); }
+"=="   { printf("Equal!! %s\n",yytext);aritmeticSet(yytext,"Multiplication"); }
+"<="   { printf("greaterOrEqual!! %s\n",yytext);aritmeticSet(yytext,"Division"); }
+">="   { printf("lessOrEqual!! %s\n",yytext);aritmeticSet(yytext,"Division"); }
+"true"   { printf("true!! %s\n",yytext); }
+"false"   { printf("false!! %s\n",yytext); }
 .   {printf("Error, lexer no preparado para este simbolo \n");}
 
 \n  {return 0;}
@@ -32,13 +39,14 @@ void aritmeticSet(char text[], char typed[]){
 
 }
 
+
 int yywrap(){}
 
 int main(){
 
 
     yylex();
-    printf("this is aritmetic and is a %s \n", type );
+    
     printf("this is sparta %d and %d  \n" , first, second );
    return 0;
 
