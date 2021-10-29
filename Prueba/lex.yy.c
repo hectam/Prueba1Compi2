@@ -447,7 +447,7 @@ char *yytext;
 int first = 0;
 int second = 0;
 char aritmetic[] = "a";
-char type[] = "x";
+char type[] = "Multiplication";
 
 void aritmeticSet();
 #line 454 "lex.yy.c"
@@ -736,22 +736,22 @@ YY_RULE_SETUP
 case 2:
 YY_RULE_SETUP
 #line 16 "pruebaLexer.l"
-{ printf("Plus!! %s",yytext);aritmeticSet(yytext); }
+{ printf("Plus!! %s\n",yytext);aritmeticSet(yytext); }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
 #line 17 "pruebaLexer.l"
-{ printf("Minus!! %s",yytext);aritmeticSet(yytext); }
+{ printf("Minus!! %s\n",yytext);aritmeticSet(yytext); }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
 #line 18 "pruebaLexer.l"
-{ printf("Multiplication!! %s",yytext);aritmeticSet(yytext); }
+{ printf("Multiplication!! %s\n",yytext);aritmeticSet(yytext); }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
 #line 19 "pruebaLexer.l"
-{ printf("Division!! %s",yytext);aritmeticSet(yytext); }
+{ printf("Division!! %s\n",yytext);aritmeticSet(yytext); }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
@@ -1780,16 +1780,17 @@ void yyfree (void * ptr )
 void aritmeticSet(char text[]){
     strcpy(aritmetic, text);
 
-    switch(aritmetic){
-        case '+':
+    if(strcmp(aritmetic, "+")){
+        
+        strcpy(type, "Sum");
 
-        break;
-        case '-':
-        break;
-        case '*':
-        break;
-        case '/':
-        break;
+    }else if(strcmp(aritmetic, "-")){
+        strcpy(type, "Substract");
+    }
+    else if(strcmp(aritmetic, "*")){
+        strcpy(type, "Multiplication");
+    }else if(strcmp(aritmetic, "/")){
+        strcpy(type, "Division");
     }
 }
 
@@ -1799,7 +1800,7 @@ int main(){
 
 
     yylex();
-    printf("this is aritmetic %s", aritmetic );
+    printf("this is aritmetic and is a %s \n", type );
     printf("this is sparta %d and %d  \n" , first, second );
    return 0;
 
