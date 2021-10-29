@@ -30,7 +30,7 @@ void aritmeticSet(char text[], char typed[]){
     
     strcpy(type, typed);
 
-    
+}
 
 int yywrap(){}
 
