@@ -13,10 +13,10 @@ void aritmeticSet();
 
 [0-9]*  {printf("Numero Encontrado \n"); if(first == 0){first = atoi(yytext);}else if(second == 0){second = atoi(yytext);}}
 
-"+"   { printf("Plus!! %s\n",yytext);aritmeticSet(yytext); }
-"-"   { printf("Minus!! %s\n",yytext);aritmeticSet(yytext); }
-"*"   { printf("Multiplication!! %s\n",yytext);aritmeticSet(yytext); }
-"/"   { printf("Division!! %s\n",yytext);aritmeticSet(yytext); }
+"+"   { printf("Plus!! %s\n",yytext);aritmeticSet(yytext,"Sum"); }
+"-"   { printf("Minus!! %s\n",yytext);aritmeticSet(yytext,"Substract"); }
+"*"   { printf("Multiplication!! %s\n",yytext);aritmeticSet(yytext,"Multiplication"); }
+"/"   { printf("Division!! %s\n",yytext);aritmeticSet(yytext,"Division"); }
 
 .   {printf("Error, lexer no preparado para este simbolo \n");}
 
@@ -24,22 +24,13 @@ void aritmeticSet();
 
 %%
 
-void aritmeticSet(char text[]){
+void aritmeticSet(char text[], char typed[]){
     strcpy(aritmetic, text);
 
-    if(strcmp(aritmetic, "+")){
-        
-        strcpy(type, "Sum");
+    
+    strcpy(type, typed);
 
-    }else if(strcmp(aritmetic, "-")){
-        strcpy(type, "Substract");
-    }
-    else if(strcmp(aritmetic, "*")){
-        strcpy(type, "Multiplication");
-    }else if(strcmp(aritmetic, "/")){
-        strcpy(type, "Division");
-    }
-}
+    
 
 int yywrap(){}
 
